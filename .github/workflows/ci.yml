@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Bundled skills match their pinned sources
+        run: bin/sync.sh --check
+
+      - name: JSON manifests parse
+        run: |
+          jq empty .claude-plugin/plugin.json
+          jq empty hooks/hooks.json
+
+      - name: Version matches every attribution literal
+        run: |
+          want="$(jq -r .version .claude-plugin/plugin.json)"
+          echo "plugin version = $want"
+          status=0
+          header="$(jq -r '.mcpServers["display-dev"].headers["X-Client-Source"]' .claude-plugin/plugin.json | sed 's/.*@//')"
+          [ "$header" = "$want" ] || { echo "MCP X-Client-Source suffix is '$header'" >&2; status=1; }
+          for v in $(grep -oE 'display-dev-claude-plugin@[0-9]+\.[0-9]+\.[0-9]+' commands/feedback.md | sed 's/.*@//' | sort -u); do
+            [ "$v" = "$want" ] || { echo "commands/feedback.md uses '$v'" >&2; status=1; }
+          done
+          exit $status
+
+      - name: Scripts stay executable
+        run: |
+          status=0
+          for script in hooks/*.sh bin/*.sh tests/*.sh tests/fixtures/digest-dsp/dsp; do
+            [ -x "$script" ] || { echo "not executable: $script" >&2; status=1; }
+          done
+          exit $status
+
+      - name: Hook tests
+        run: bash tests/hooks.sh
+
+      - name: ShellCheck
+        # Pinned by full commit SHA (v2.0.0).
+        uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38
+        with:
+          scandir: ./hooks
+          severity: warning

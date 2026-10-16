@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Copy the pinned display.dev and Visualize skills into skills/.
+# Copy the pinned display.dev skill into skills/.
 #
-# Both skills are maintained in their own repositories. This plugin bundles
-# one pinned commit or tag of each (sources.lock). Never edit skills/ by hand.
+# The skill is maintained in github.com/display-dev/skill. This plugin bundles
+# one pinned commit or tag of it (sources.lock). Never edit skills/ by hand.
 #
 # Usage:
 #   bin/sync.sh           # replace skills/ with the pinned sources
@@ -67,5 +67,4 @@ sync_one() {
 }
 
 sync_one display-dev
-sync_one visualize
 exit "$STATUS"

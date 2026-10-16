@@ -3,7 +3,6 @@
 Publish HTML or Markdown from Claude to [display.dev](https://display.dev), choose who can view it, and act on reviewer comments. One install gives Claude:
 
 - the **display.dev skill**: publish, browse, search, read, edit, copy, and share artifacts with public, private, or company access;
-- the **[Visualize](https://github.com/display-dev/visualize) skill**: on-brand HTML reports, plans, diagrams, and decks;
 - the **display.dev MCP server** (`https://api.display.dev/v1/mcp`);
 - **`/display-dev:feedback`**: lists your artifacts with open comments, shows a plan for each thread, and after you approve it, edits the artifact, replies, and resolves the threads. With no comments, it offers to ask a reviewer or to wait for comments;
 - a **publish guard** hook that scans a publish for secrets (API keys, tokens, private keys). It blocks a public publish and asks before any other publish;
@@ -33,19 +32,22 @@ The hooks run in Claude Code and in Cowork on your own computer. The comment not
 | Publish guard hook | `hooks/publish-guard.sh` before each Bash command and each display.dev `publish` tool call | Nothing. It reads only the files named in a publish command, or the `content` of an MCP publish, and checks them for secrets on your machine. | Nothing |
 | Comment note hook | `hooks/comment-digest.sh` at session start, only when `dsp` is installed | One request through `dsp` to `api.display.dev`: your 100 most recently updated artifacts with their names and open-thread counts. It never fetches comment text. | The open-thread count and name of each of your artifacts with open threads, in Claude Code's plugin data folder (`open-thread-counts.json`) |
 | `/display-dev:feedback` | `dsp` commands or MCP tool calls | Reads the metadata, open comments, and source of the artifact you choose. After you approve the plan, publishes the new version and posts replies and resolves to `api.display.dev`. | A temporary copy of the artifact source while it edits |
-| Visualize skill | Local scripts for brand capture, checks, and rendering. Mermaid diagrams run `@mermaid-js/mermaid-cli@11.12.0` through `npx`. | Nothing by default. Only when you explicitly choose OpenAI or Google for image generation, it reads `OPENAI_API_KEY` or `GEMINI_API_KEY` from your environment and sends the image brief and any reference images to `api.openai.com` or `generativelanguage.googleapis.com`. Publishing goes through display.dev. | The HTML files it writes in your project |
 
 ## Maintaining
 
-`skills/display-dev/` and `skills/visualize/` are copies of pinned releases from [display-dev/skill](https://github.com/display-dev/skill) and [display-dev/visualize](https://github.com/display-dev/visualize). Never edit them here. Change a skill in its own repository, then update `sources.lock` and run:
+`skills/display-dev/` is a copy of a pinned commit of [display-dev/skill](https://github.com/display-dev/skill). Never edit it here. Change the skill in that repository, then update `sources.lock` and run:
 
 ```sh
-bin/sync.sh           # copy the pinned sources into skills/
+bin/sync.sh           # copy the pinned skill into skills/
 bin/sync.sh --check   # CI: fail when skills/ has drifted
 bash tests/hooks.sh   # offline hook tests
 ```
 
 Raise `version` in `.claude-plugin/plugin.json` with every release, together with the `X-Client-Source` suffix there and in `commands/feedback.md`. CI checks that they match.
+
+For on-brand HTML pages, install [Visualize](https://github.com/display-dev/visualize) as well: `npx skills add display-dev/visualize --skill visualize`.
+
+Display's privacy policy: https://display.dev/privacy
 
 ## License
 

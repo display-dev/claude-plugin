@@ -1,6 +1,6 @@
-# Pinned source copied into skills/ by bin/sync.sh. Never edit skills/ by hand.
+# Pinned source copied into skills/ by tools/sync.sh. Never edit skills/ by hand.
 # Change a skill in its own repository, release it there, then bump the ref
-# here and run bin/sync.sh.
+# here and run tools/sync.sh.
 display-dev_repo=https://github.com/display-dev/skill.git
 display-dev_ref=10df21fce1fdfc28f87e2095cb08cea24ea95e75
 display-dev_path=display-dev

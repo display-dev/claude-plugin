@@ -5,8 +5,8 @@
 # one pinned commit or tag of it (sources.lock). Never edit skills/ by hand.
 #
 # Usage:
-#   bin/sync.sh           # replace skills/ with the pinned sources
-#   bin/sync.sh --check   # exit non-zero when skills/ has drifted
+#   tools/sync.sh           # replace skills/ with the pinned sources
+#   tools/sync.sh --check   # exit non-zero when skills/ has drifted
 
 set -euo pipefail
 
@@ -17,7 +17,7 @@ MODE="sync"
 case "${1:-}" in
   "") ;;
   --check) MODE="check" ;;
-  *) echo "usage: bin/sync.sh [--check]" >&2; exit 2 ;;
+  *) echo "usage: tools/sync.sh [--check]" >&2; exit 2 ;;
 esac
 
 read_lock() {
@@ -54,7 +54,7 @@ sync_one() {
     if diff -r "$src" "$dest" >/dev/null 2>&1; then
       echo "sync: skills/$name matches $ref"
     else
-      echo "sync: skills/$name does not match $ref. Run bin/sync.sh and commit the result." >&2
+      echo "sync: skills/$name does not match $ref. Run tools/sync.sh and commit the result." >&2
       STATUS=1
     fi
     return

@@ -38,8 +38,8 @@ The hooks run in Claude Code and in Cowork on your own computer. The comment not
 `skills/display-dev/` is a copy of a pinned commit of [display-dev/skill](https://github.com/display-dev/skill). Never edit it here. Change the skill in that repository, then update `sources.lock` and run:
 
 ```sh
-bin/sync.sh           # copy the pinned skill into skills/
-bin/sync.sh --check   # CI: fail when skills/ has drifted
+tools/sync.sh           # copy the pinned skill into skills/
+tools/sync.sh --check   # CI: fail when skills/ has drifted
 bash tests/hooks.sh   # offline hook tests
 ```
 

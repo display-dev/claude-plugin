@@ -1,7 +1,8 @@
 {
   "name": "display-dev",
+  "displayName": "Display",
   "description": "Publish, browse, search, read, edit, and share HTML or Markdown artifacts with public, private, or company-authenticated access. Includes the display.dev MCP server, /display-dev:feedback for reviewer comments, a secret scan before publishes, and a session-start note about new comments.",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "author": {
     "name": "display.dev",
     "url": "https://display.dev"
@@ -10,12 +11,15 @@
   "repository": "https://github.com/display-dev/claude-plugin",
   "license": "MIT",
   "privacyPolicyUrl": "https://display.dev/privacy",
+  "termsOfServiceUrl": "https://display.dev/terms",
+  "supportUrl": "https://display.dev/support",
+  "documentationUrl": "https://display.dev/docs/skill",
   "mcpServers": {
     "display-dev": {
       "type": "http",
       "url": "https://api.display.dev/v1/mcp",
       "headers": {
-        "X-Client-Source": "display-dev-claude-plugin@0.11.0"
+        "X-Client-Source": "display-dev-claude-plugin@0.11.1"
       }
     }
   }

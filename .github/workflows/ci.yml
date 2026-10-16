@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Bundled skills match their pinned sources
-        run: bin/sync.sh --check
+        run: tools/sync.sh --check
 
       - name: JSON manifests parse
         run: |
@@ -38,7 +38,7 @@ jobs:
       - name: Scripts stay executable
         run: |
           status=0
-          for script in hooks/*.sh bin/*.sh tests/*.sh tests/fixtures/digest-dsp/dsp; do
+          for script in hooks/*.sh tools/*.sh tests/*.sh tests/fixtures/digest-dsp/dsp; do
             [ -x "$script" ] || { echo "not executable: $script" >&2; status=1; }
           done
           exit $status

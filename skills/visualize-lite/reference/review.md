@@ -2,7 +2,7 @@
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 
-`/visualize review <path>` is the Evaluate verb. It reports findings without modifying the artifact or starting another command. Its recommendation may be a bounded repair, refinement, exploration, a revised brief, or no further work. The user decides what to authorize.
+`/visualize-lite review <path>` is the Evaluate verb. It reports findings without modifying the artifact or starting another command. Its recommendation may be a bounded repair, refinement, exploration, a revised brief, or no further work. The user decides what to authorize.
 
 Review runs deterministic checks first (Layer 1 via `detect.mjs` for static patterns, Layer 1b via `browser-contrast.mjs` for browser-computed contrast, and a conditional diagram-geometry layer), then LLM judgment via the rules below. Each layer catches what the others can't reliably see.
 

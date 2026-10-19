@@ -2,7 +2,7 @@
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 
-`/visualize animate <path>` covers all motion in the artifact — both adding motion where the artifact is jarring or lifeless, and removing or fixing motion that violates the doctrine (bounce easing, missing `prefers-reduced-motion`, scroll-jacking, parallax-as-decoration). Hands off to `polish` at the end.
+`/visualize-lite animate <path>` covers all motion in the artifact — both adding motion where the artifact is jarring or lifeless, and removing or fixing motion that violates the doctrine (bounce easing, missing `prefers-reduced-motion`, scroll-jacking, parallax-as-decoration). Hands off to `polish` at the end.
 
 A hero moment is optional. Reserve it for an infrequent focal event that benefits from emphasis; feedback and state transitions can be the whole successful pass. Don't stagger everything — every-list-with-50ms-delays adds perceived load and reads as decoration.
 
@@ -26,8 +26,8 @@ Special mode (not a refusal): when the resolved context declares `motion: none`,
 
 Refuse and route when:
 
-- The artifact carries ≥3 Absolute bans. Motion on ban-shaped elements doesn't fix the shape. Recommend `/visualize simplify` first.
-- No interactive elements exist AND the artifact is static one-shot HTML AND there's no jarring transition to smooth. Animate has nothing to do — recommend `/visualize polish` or surface that no motion is warranted.
+- The artifact carries ≥3 Absolute bans. Motion on ban-shaped elements doesn't fix the shape. Recommend `/visualize-lite simplify` first.
+- No interactive elements exist AND the artifact is static one-shot HTML AND there's no jarring transition to smooth. Animate has nothing to do — recommend `/visualize-lite polish` or surface that no motion is warranted.
 
 ## Gate each motion choice
 
@@ -78,7 +78,7 @@ See [motion.md](motion.md) for native primitives, easing, durations, and reduced
 Motion failure modes (parallax, bounce on every interaction, decorative spin, missing `prefers-reduced-motion`, scroll-jacking, stagger choreography on every list, animating layout properties, decorative scroll-driven on prose, global `will-change`, animation hiding slow loading) live in [motion.md](motion.md)'s "Failure modes the agent reaches for" block as the canonical taxonomy. Animate adds these verb-specific constraints on top:
 
 - **Stagger choreography on lists with >5 items.** Animate-specific orchestration constraint — motion.md's "stagger on every list" failure mode covers the general case; animate sets the per-artifact threshold at 5.
-- **Animate a banned shape.** If the target element is a SKILL.md banned shape, adding motion doesn't fix it. Route to `/visualize simplify` first.
+- **Animate a banned shape.** If the target element is a SKILL.md banned shape, adding motion doesn't fix it. Route to `/visualize-lite simplify` first.
 - **Add motion where the resolved context declares `motion: none`.** Removal-only mode applies — context wins, this verb runs as a stripping pass.
 
 ## Per-template-category notes
@@ -161,6 +161,6 @@ Animate-specific content to surface:
 - **Diff size** as a percent of the artifact.
 - **Next step.** Polish checks the dimensions animate didn't change.
 
-See SKILL.md `Hand-off output shape` for the shared variant rules. Animate's refusal case fires when the artifact has no jarring transitions, no broken motion, and no interactive elements — route to `/visualize polish` instead.
+See SKILL.md `Hand-off output shape` for the shared variant rules. Animate's refusal case fires when the artifact has no jarring transitions, no broken motion, and no interactive elements — route to `/visualize-lite polish` instead.
 
 **`motion: none` variant.** When the resolved context declares `motion: none`, the pass is removal-only — there's no hero moment and no animated feedback or transition layer to add. Preserve existing immediate state cues, surface what motion was removed (counts of keyframes / `transition:` declarations / `animation:` declarations stripped), name that the context declared `motion: none`, then route to polish. Same conversational shape — don't fence the summary as a separate templated variant.

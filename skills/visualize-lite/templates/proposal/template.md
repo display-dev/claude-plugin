@@ -39,6 +39,6 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 **Asks-block is the call to action.** The closing Asks block is required and lists ≥ 2 concrete items — specific feedback request, named decision, deadline. A Proposal without explicit asks reads as a position paper without a call to action; the artifact's whole purpose is to gauge response.
 
-**Editable-by-default — explicitly no terminal lock.** Unlike ADR / RFC / Case study which carry terminal-state verb-runtime locks, Proposal is a working draft by design and rewriting during the gauge-interest period is expected. Graduation transitions the content to a new artifact (typically RFC, which carries its own locks); archival is a separate terminal state where the proposal becomes read-only as historical context. `/visualize review` stays unlocked at every state.
+**Editable-by-default — explicitly no terminal lock.** Unlike ADR / RFC / Case study which carry terminal-state verb-runtime locks, Proposal is a working draft by design and rewriting during the gauge-interest period is expected. Graduation transitions the content to a new artifact (typically RFC, which carries its own locks); archival is a separate terminal state where the proposal becomes read-only as historical context. `/visualize-lite review` stays unlocked at every state.
 
 The brand profile + universal laws + reflex-aesthetics handle everything else.

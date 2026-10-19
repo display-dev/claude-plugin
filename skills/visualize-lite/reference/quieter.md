@@ -2,7 +2,7 @@
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 
-`/visualize quieter <path>` reduces visual intensity in artifacts that read as loud, over-decorated, or over-saturated — without removing the brand's character. Hands off to `polish` at the end.
+`/visualize-lite quieter <path>` reduces visual intensity in artifacts that read as loud, over-decorated, or over-saturated — without removing the brand's character. Hands off to `polish` at the end.
 
 Refine; don't desaturate-to-default. Brand voice survives the cuts; what doesn't survive is chrome the brand never asked for. Don't end up with a Notion-template artifact — subtlety needs precision, not erasure.
 
@@ -21,7 +21,7 @@ Quieter operates on an artifact that's *over-amplified within a working brand* �
 
 Refuse and route when:
 
-- The artifact carries ≥3 Absolute bans. Quieter cannot tone down a banned pattern — the bans are structural, not intensity-based. Recommend `/visualize simplify` first.
+- The artifact carries ≥3 Absolute bans. Quieter cannot tone down a banned pattern — the bans are structural, not intensity-based. Recommend `/visualize-lite simplify` first.
 - The artifact is structurally wrong (BAN-shaped) rather than intensity-wrong. Look at the symptom: if multiple elements all need to be made smaller / paler / lighter, quieter applies. If multiple elements need to be *removed entirely*, simplify applies.
 
 ## Plan the refinement
@@ -106,4 +106,4 @@ Quieter-specific content to surface:
 
 See SKILL.md `Hand-off output shape` for the shared variant rules. Quieter's structural-refusal condition to surface in conversational phrasing:
 
-- **≥3 Absolute bans present.** The artifact is structurally wrong, not intensity-wrong. Quieter can't tone down banned patterns; route to `/visualize simplify` first.
+- **≥3 Absolute bans present.** The artifact is structurally wrong, not intensity-wrong. Quieter can't tone down banned patterns; route to `/visualize-lite simplify` first.

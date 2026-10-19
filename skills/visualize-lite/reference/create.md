@@ -1,4 +1,4 @@
-# Creation procedure (default `/visualize <topic-or-path>`)
+# Creation procedure (default `/visualize-lite <topic-or-path>`)
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 

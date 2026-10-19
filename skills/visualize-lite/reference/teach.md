@@ -166,7 +166,7 @@ If only `:root` is derived, OS-dark users see white-flashed renders when viewing
 
 **Required token surface (as a floor, not a ceiling):** match the surface enumerated in `design-systems/<reference>/tokens.css`. Templates reference `--chart-*`, `--spacing`, `--radius-*`, `--font-display`, motion tokens, and more beyond palette + fonts. Partial sidecars silently degrade — read the reference's `tokens.css` end-to-end and ensure every named token in the file has a value in your derived sidecar, in both `:root` and the two dark blocks. The reference is the *minimum* surface; brand-introduced tokens (motion presets per the section above; label-slot splits like `--font-label` when both display and body are serif; per-component CSS the 8-prop subset can't hold) get added on top.
 
-Every render command (`/visualize <topic>`, `polish`, `bolder`, `quieter`, `simplify`, `animate`) reads the YAML frontmatter + sidecar at render time and inlines the CSS-form tokens into the artifact's `<style>` element.
+Every render command (`/visualize-lite <topic>`, `polish`, `bolder`, `quieter`, `simplify`, `animate`) reads the YAML frontmatter + sidecar at render time and inlines the CSS-form tokens into the artifact's `<style>` element.
 
 ### Why custom-by-default
 

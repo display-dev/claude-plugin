@@ -41,6 +41,6 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 **Marker character is the source of truth, colour reinforces.** Every diff line carries a `+` / `-` / space character in the `.lm` column for assistive tech — colour alone never substitutes. Each `<pre class="code-block">` is `tabindex="0"` for keyboard-scrollable horizontal overflow, and the outer element resets `white-space: normal` (the `<pre>` UA default would render `<li>`-row indentation as visible whitespace); per-line `.dl` carries `white-space: pre` so the source line is preserved.
 
-**Summary required at scale, oversized diffs flagged.** The summary block is mandatory whenever the diff exceeds ~50 changed lines or two files — the reader needs to know whether to dig in before they dig in. Diffs >300 lines or >5 files trip a `/visualize review` warning: at that size the artifact is usually better summarised as a Report with a PR link, not rendered line-by-line.
+**Summary required at scale, oversized diffs flagged.** The summary block is mandatory whenever the diff exceeds ~50 changed lines or two files — the reader needs to know whether to dig in before they dig in. Diffs >300 lines or >5 files trip a `/visualize-lite review` warning: at that size the artifact is usually better summarised as a Report with a PR link, not rendered line-by-line.
 
 The brand profile + universal laws + reflex-aesthetics handle everything else.

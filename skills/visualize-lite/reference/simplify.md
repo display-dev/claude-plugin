@@ -2,7 +2,7 @@
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 
-`/visualize simplify <path>` removes elements that don't carry comprehension, hierarchy, or feedback. Hands off to `polish` at the end.
+`/visualize-lite simplify <path>` removes elements that don't carry comprehension, hierarchy, or feedback. Hands off to `polish` at the end.
 
 Edit; don't erase. Brand voice survives the cuts; what doesn't survive is chrome the brand never asked for. Don't strip the artifact past the brand's identity.
 
@@ -21,7 +21,7 @@ Simplify is the *only* Refine verb that's the correct first response to a ban-ca
 
 Refuse and route when:
 
-- The artifact has **no decoration to remove** — it's already minimal. Recommend `/visualize bolder` or `/visualize polish` instead, or surface that nothing needs cutting.
+- The artifact has **no decoration to remove** — it's already minimal. Recommend `/visualize-lite bolder` or `/visualize-lite polish` instead, or surface that nothing needs cutting.
 - The change would become a rebuild rather than a simplification. Stop refinement and apply SKILL.md's Hand-off output shape and Design judgment to recommend the next action.
 
 ## Plan the cuts
@@ -125,4 +125,4 @@ Simplify-specific content to surface:
 - **Diff size** as a percent of the artifact.
 - **Next step.** Polish raises the floor across the dimensions simplify didn't touch.
 
-See SKILL.md `Hand-off output shape` for the shared variant rules. Simplify's refusal case is "no decoration to remove — the artifact is already minimal" — route to `/visualize polish` or `/visualize bolder` instead.
+See SKILL.md `Hand-off output shape` for the shared variant rules. Simplify's refusal case is "no decoration to remove — the artifact is already minimal" — route to `/visualize-lite polish` or `/visualize-lite bolder` instead.

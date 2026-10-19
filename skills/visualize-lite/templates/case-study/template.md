@@ -41,6 +41,6 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 **Before/after grid follows direction convention with explanation.** `--outcome-up` (green-restrained) for direction:up, `--outcome-down` (warm coal-red, never alarm) for direction:down, `--outcome-flat` (muted) for flat. Reversing the mapping breaks convention-consistency. Every card carries a `note` line explaining the metric's interpretation — bare numbers read as marketing puff.
 
-**Published-state verb-runtime lock.** Once a case study ships with customer approval, mutating iteration verbs may not rewrite the customer quote, methodology block, or outcome numbers without a new version. `/visualize review` stays unlocked (audit-only). Same terminal-state lock pattern as ADR / RFC.
+**Published-state verb-runtime lock.** Once a case study ships with customer approval, mutating iteration verbs may not rewrite the customer quote, methodology block, or outcome numbers without a new version. `/visualize-lite review` stays unlocked (audit-only). Same terminal-state lock pattern as ADR / RFC.
 
 The brand profile + universal laws + reflex-aesthetics handle everything else.

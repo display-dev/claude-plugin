@@ -39,6 +39,6 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 **Stable version IDs.** Every entry has a stable `id` matching its version (`id="v0.36"` for `0.36.0`). External citations depend on this — re-keying after release is a permalink break. Reverse-chronological ordering is part of the same contract; out-of-order entries trip.
 
-**Append-only verb-runtime lock.** Mutating iteration verbs may add a new entry at the top or polish existing wording, but cannot reorder, delete, or rewrite the body of an already-published entry's bullets. The detector reads the artifact's git history (when available) and refuses mutating-verb-driven changes to historical entries; `/visualize review` stays unlocked as audit.
+**Append-only verb-runtime lock.** Mutating iteration verbs may add a new entry at the top or polish existing wording, but cannot reorder, delete, or rewrite the body of an already-published entry's bullets. The detector reads the artifact's git history (when available) and refuses mutating-verb-driven changes to historical entries; `/visualize-lite review` stays unlocked as audit.
 
 The brand profile + universal laws + reflex-aesthetics handle everything else.

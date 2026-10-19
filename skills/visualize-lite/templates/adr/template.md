@@ -35,7 +35,7 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 ## Failure modes
 
-**Append-only contract is enforced at the verb level.** The detector blocks `/visualize polish`, `/visualize bolder`, `/visualize simplify`, `/visualize quieter`, `/visualize animate` on any ADR whose status is `accepted` or `superseded` — editing the record falsifies it. To revise, write a new ADR with status `proposed` and a `supersedes:` link. `/visualize review` stays unlocked (audit, not mutation).
+**Append-only contract is enforced at the verb level.** The detector blocks `/visualize-lite polish`, `/visualize-lite bolder`, `/visualize-lite simplify`, `/visualize-lite quieter`, `/visualize-lite animate` on any ADR whose status is `accepted` or `superseded` — editing the record falsifies it. To revise, write a new ADR with status `proposed` and a `supersedes:` link. `/visualize-lite review` stays unlocked (audit, not mutation).
 
 **Consequences require both sides.** An ADR with only `good` consequences is wrong — every decision has tradeoffs; claiming otherwise reads as advocacy rather than record. Minimum three entries, both kinds present.
 

@@ -1,5 +1,5 @@
 ---
-name: visualize
+name: visualize-lite
 version: 0.8.0
 license: MIT
 user-invocable: true
@@ -15,16 +15,16 @@ allowed-tools:
   - Bash(node $SKILL_DIR/scripts/record-image.mjs*)
   - Bash(bash $SKILL_DIR/scripts/publish.sh*)
   - Bash($SKILL_DIR/scripts/publish.sh*)
-  - Bash(node */visualize/scripts/detect.mjs*)
-  - Bash(node */visualize/scripts/browser-contrast.mjs*)
-  - Bash(node */visualize/scripts/browser-diagram.mjs*)
-  - Bash(node */visualize/scripts/render-mermaid.mjs*)
-  - Bash(node */visualize/scripts/palette.mjs*)
-  - Bash(node */visualize/scripts/teach.mjs*)
-  - Bash(node */visualize/scripts/generate-image.mjs*)
-  - Bash(node */visualize/scripts/record-image.mjs*)
-  - Bash(bash */visualize/scripts/publish.sh*)
-  - Bash(*/visualize/scripts/publish.sh*)
+  - Bash(node */visualize-lite/scripts/detect.mjs*)
+  - Bash(node */visualize-lite/scripts/browser-contrast.mjs*)
+  - Bash(node */visualize-lite/scripts/browser-diagram.mjs*)
+  - Bash(node */visualize-lite/scripts/render-mermaid.mjs*)
+  - Bash(node */visualize-lite/scripts/palette.mjs*)
+  - Bash(node */visualize-lite/scripts/teach.mjs*)
+  - Bash(node */visualize-lite/scripts/generate-image.mjs*)
+  - Bash(node */visualize-lite/scripts/record-image.mjs*)
+  - Bash(bash */visualize-lite/scripts/publish.sh*)
+  - Bash(*/visualize-lite/scripts/publish.sh*)
 description: >
   Generate beautiful, on-brand HTML artifacts — reports, diagrams, diff
   reviews, slide decks, plans, recaps, dashboards. Loads on creation
@@ -64,9 +64,9 @@ Evaluate proposed fixes together against the reader's task. Do not turn every cr
 
 ## Commands
 
-`/visualize` invokes the skill. The argument tells the agent what to do.
+`/visualize-lite` invokes the skill. The argument tells the agent what to do.
 
-**Default (no command, or the first argument is a topic):** `/visualize <topic-or-path>` creates a new artifact. The agent picks a template from intent across all of `templates/`, composes against the resolved project or artifact-theme context, writes self-contained HTML. **The flow is gated:** preflight checklist + shape-gate before code, no self-authored briefs. See `reference/create.md`.
+**Default (no command, or the first argument is a topic):** `/visualize-lite <topic-or-path>` creates a new artifact. The agent picks a template from intent across all of `templates/`, composes against the resolved project or artifact-theme context, writes self-contained HTML. **The flow is gated:** preflight checklist + shape-gate before code, no self-authored briefs. See `reference/create.md`.
 
 **Named commands:**
 
@@ -82,7 +82,7 @@ Evaluate proposed fixes together against the reader's task. Do not turn every cr
 | **Evaluate** | `review` | `<path>` | Deterministic detector findings + LLM judgment. Reports; doesn't modify the file. | `reference/review.md` |
 | **Publish** | `publish` | `<path>` | Push the artifact to display.dev via MCP / CLI / HTTP cascade. | `reference/publish.md` |
 
-Invocation forms: `/visualize teach`, `/visualize explore artifact ./report.html`, `/visualize polish ./report.html`, `/visualize publish ./diagram.html`. On hosts without a slash-command form, the skill loads on intent-match from the description above; natural-language is the primary entry there.
+Invocation forms: `/visualize-lite teach`, `/visualize-lite explore artifact ./report.html`, `/visualize-lite polish ./report.html`, `/visualize-lite publish ./diagram.html`. On hosts without a slash-command form, the skill loads on intent-match from the description above; natural-language is the primary entry there.
 
 ## Routing rules
 
@@ -106,7 +106,7 @@ Every refine run's summary covers four facts:
 
 Variant rules (behaviour, not surface text):
 
-- **Context source note.** If the run cannot use a persisted `DESIGN.md` / `PRODUCT.md`, mention once which fallback source anchored the work: project instructions, README/docs, generated seed, or Clean defaults. Also nudge the user to run `/visualize teach` so that fallback can become a real brand profile. Clean defaults are the last resort after the Brand profile rules below find no usable project guidance.
+- **Context source note.** If the run cannot use a persisted `DESIGN.md` / `PRODUCT.md`, mention once which fallback source anchored the work: project instructions, README/docs, generated seed, or Clean defaults. Also nudge the user to run `/visualize-lite teach` so that fallback can become a real brand profile. Clean defaults are the last resort after the Brand profile rules below find no usable project guidance.
 - **Diff exceeded the 40% guard.** Stop refinement and report the affected scope. Apply Design judgment to recommend exploration when the structural direction remains unresolved, or a fresh creation pass when it is established. Do not continue into polish.
 - **Verb shouldn't have run** (Absolute bans present, no decoration to remove, no focal moment, etc.). Skip the standard run summary entirely. Surface a short refusal that names the reason and routes to the right alternative verb. Each per-verb reference's "When `<verb>` is the right verb (and when it isn't)" section enumerates the verb's specific refusal conditions.
 
@@ -205,13 +205,13 @@ Brand authority is identity-scoped. If the request fixes a named identity but th
 
 The design systems under `design-systems/` are reference packages with design guidance, tokens, and previews. `teach` and System Explore read them when deriving project identities; artifact creation and exploration can use them as themes under the shared contract below.
 
-This copy of Visualize bundles only `catalog-index.json`, `_template/`, and `clean/` from `design-systems/`. `design-systems/REMOTE.md` holds the base URL of the full catalog at the same version. When a selected package folder is missing, fetch its `README.md`, `DESIGN.md`, and `tokens.css` from that base URL plus `<slug>/<file>` with `curl` or the host's web fetch, then use them as if they were local. If a fetch fails, name the package that could not be loaded and continue with the next shortlisted reference or the fallback; never rebuild a package from memory.
+This lite build bundles only `catalog-index.json`, `_template/`, and `clean/` from `design-systems/`. `design-systems/REMOTE.md` holds the base URL of the full catalog at the same version. When a selected package folder is missing, fetch its `README.md`, `DESIGN.md`, and `tokens.css` from that base URL plus `<slug>/<file>` with `curl` or the host's web fetch, then use them as if they were local. If a fetch fails, name the package that could not be loaded and continue with the next shortlisted reference or the fallback; never rebuild a package from memory.
 
-**Fallback when no DESIGN.md exists:** an approved artifact reference supplies the visual baseline where project guidance is absent; do not replace it with a seed or Clean defaults. Otherwise, first read available project instructions (`AGENTS.md`, `CLAUDE.md`, README, docs) for product positioning, visual direction, anti-references, and design principles. If those files contain usable brand/design guidance, treat it as binding brand context while using Clean's token **surface** as the structural floor. Explicit cues in repo guidance override Clean values: named fonts become the artifact font stack, named palette roles become the artifact color tokens, and named anti-references rule out the corresponding fallback register. If the guidance points at concrete token files, stylesheet files, logo components, or design guidelines, read those referenced files and use their values before approximating from prose. Using Clean's token surface means keeping the semantic variable shape, not copying Clean's fonts, monochrome values, or warm/cream defaults. Only run `node $SKILL_DIR/scripts/palette.mjs --from "<topic-or-project-name>"` when the project has no usable visual direction at all. When a seed is used, compose the temporary `--primary`, `--background`, `--foreground`, `--accent`, chart, and state tokens from the seed + artifact brief; do not copy Clean's monochrome palette unchanged. Use the script's `derived` block (real contrast numbers, per-hue chroma budgets, light + dark lightness ladders) instead of estimating those values; if the seed's register fights the brief, re-run with `--not <zone,...>` or `--vary <n>` and note the veto in the shape gate. After composing, validate with `node $SKILL_DIR/scripts/palette.mjs --check <tokens-or-html> --strict` and fix error findings (exit 2) before render. Nudge `/visualize teach` once per session so repo guidance or the temporary seed can become a real brand profile.
+**Fallback when no DESIGN.md exists:** an approved artifact reference supplies the visual baseline where project guidance is absent; do not replace it with a seed or Clean defaults. Otherwise, first read available project instructions (`AGENTS.md`, `CLAUDE.md`, README, docs) for product positioning, visual direction, anti-references, and design principles. If those files contain usable brand/design guidance, treat it as binding brand context while using Clean's token **surface** as the structural floor. Explicit cues in repo guidance override Clean values: named fonts become the artifact font stack, named palette roles become the artifact color tokens, and named anti-references rule out the corresponding fallback register. If the guidance points at concrete token files, stylesheet files, logo components, or design guidelines, read those referenced files and use their values before approximating from prose. Using Clean's token surface means keeping the semantic variable shape, not copying Clean's fonts, monochrome values, or warm/cream defaults. Only run `node $SKILL_DIR/scripts/palette.mjs --from "<topic-or-project-name>"` when the project has no usable visual direction at all. When a seed is used, compose the temporary `--primary`, `--background`, `--foreground`, `--accent`, chart, and state tokens from the seed + artifact brief; do not copy Clean's monochrome palette unchanged. Use the script's `derived` block (real contrast numbers, per-hue chroma budgets, light + dark lightness ladders) instead of estimating those values; if the seed's register fights the brief, re-run with `--not <zone,...>` or `--vary <n>` and note the veto in the shape gate. After composing, validate with `node $SKILL_DIR/scripts/palette.mjs --check <tokens-or-html> --strict` and fix error findings (exit 2) before render. Nudge `/visualize-lite teach` once per session so repo guidance or the temporary seed can become a real brand profile.
 
-**Refine verbs on missing persisted brand files:** `simplify` / `bolder` / `quieter` / `animate` / `polish` use the same fallback hierarchy as creation. Project instructions, README/docs, or other already-loaded context can be a valid qualitative brand anchor. Clean defaults are only the anchor when no usable project guidance exists. Whenever a fallback source is used, mention that source once and nudge `/visualize teach` so the fallback can become a real brand profile.
+**Refine verbs on missing persisted brand files:** `simplify` / `bolder` / `quieter` / `animate` / `polish` use the same fallback hierarchy as creation. Project instructions, README/docs, or other already-loaded context can be a valid qualitative brand anchor. Clean defaults are only the anchor when no usable project guidance exists. Whenever a fallback source is used, mention that source once and nudge `/visualize-lite teach` so the fallback can become a real brand profile.
 
-**Refine verbs on artifacts that carry ≥3 Absolute bans:** `bolder` / `quieter` / `animate` / `polish` refuse and route. State in the run summary: `"REFUSED — N Absolute bans present (listed). The artifact needs structural cleanup before <verb> applies. Recommend /visualize simplify <path> first (removes the ban patterns), then re-evaluate."` Simplify accepts ban-carrying input as its core case; the other Refine verbs assume a clean baseline and must not run on ban-heavy artifacts.
+**Refine verbs on artifacts that carry ≥3 Absolute bans:** `bolder` / `quieter` / `animate` / `polish` refuse and route. State in the run summary: `"REFUSED — N Absolute bans present (listed). The artifact needs structural cleanup before <verb> applies. Recommend /visualize-lite simplify <path> first (removes the ban patterns), then re-evaluate."` Simplify accepts ban-carrying input as its core case; the other Refine verbs assume a clean baseline and must not run on ban-heavy artifacts.
 
 ## Artifact themes
 

@@ -39,6 +39,6 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 **Restricted state vocabularies.** Decision states are `decided` / `pending` / `blocked`; action-item states are `open` / `in-progress` / `done` / `cancelled`. Inventing states (`resolved`, `tabled`, `deferred`) trips. Postmortem's genre-reflex guard applies — no alarm-red on `blocked` decisions or `cancelled` actions (blocked needs attention, cancelled is fine; neither is failure to dramatise). The action-item primitive is shared with Postmortem follow-ups, Plan review next-steps, RFC accepted-actions, Project recap next-queue.
 
-**Reviewed-and-distributed read-only lock.** Once meeting notes have been reviewed by attendees and distributed, mutating iteration verbs may not rewrite decisions, action items, or attendee lists. `/visualize review` is an audit and stays unlocked; corrections issue as version-bumped re-publish. Same terminal-state verb-runtime lock pattern as Postmortem `resolved`, Plan review `cut`, FAQ shipped IDs.
+**Reviewed-and-distributed read-only lock.** Once meeting notes have been reviewed by attendees and distributed, mutating iteration verbs may not rewrite decisions, action items, or attendee lists. `/visualize-lite review` is an audit and stays unlocked; corrections issue as version-bumped re-publish. Same terminal-state verb-runtime lock pattern as Postmortem `resolved`, Plan review `cut`, FAQ shipped IDs.
 
 The brand profile + universal laws + reflex-aesthetics handle everything else.

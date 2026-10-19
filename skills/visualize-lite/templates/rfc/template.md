@@ -39,7 +39,7 @@ The first two phone screens must deliver title, thesis, and essential context wi
 
 **Comment thread is chronological with stage-transitions interleaved.** Entries render oldest-to-newest by `time` — out-of-order entries trip the detector because the thread reads as a record of the conversation, not a re-ordering for emphasis. Stage-transition markers sit at the correct time position. Commenters and authors are real named people; placeholders like "Anonymous Reviewer" or "Engineer 1" trip — empty fields are acceptable, fake names are not.
 
-**Terminal-stage verb-runtime lock.** Once `stage` is `accepted`, `rejected`, or `withdrawn`, mutating iteration verbs are locked at runtime. FCP locks the proposal body but keeps the comment thread open. `/visualize review` stays available (audit-only). Same lock pattern as ADR / Case study.
+**Terminal-stage verb-runtime lock.** Once `stage` is `accepted`, `rejected`, or `withdrawn`, mutating iteration verbs are locked at runtime. FCP locks the proposal body but keeps the comment thread open. `/visualize-lite review` stays available (audit-only). Same lock pattern as ADR / Case study.
 
 **Stage-banner restraint extends the genre-reflex guard.** `rejected` uses warm coal-red (`--stage-rejected`, chroma ≤ 0.15) — never saturated alarm-red. `withdrawn` uses very muted grey. A rejected RFC is part of the record, not a failure to dramatise; withdrawal is intentional. No emoji or all-caps on the stage label.
 

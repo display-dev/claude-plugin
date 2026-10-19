@@ -120,27 +120,27 @@ Apply SKILL.md's Design judgment first. This table selects a remedy once the rea
 
 | Worst heuristic | Root cause | Recommended next action |
 |---|---|---|
-| H1 (visual primacy), H4 (narrative sequencing) | Primary reading path or structural direction remains unresolved | `/visualize explore artifact` to compare arrangements under one brief, within its supported scope |
-| H1 (visual primacy) | No element is amplified — everything reads at middle weight | `/visualize bolder` (amplify one focal element) |
-| H1 | Too many elements competing (3+ at same weight) | `/visualize simplify` (cut the competing chrome) OR `/visualize quieter` (demote the supporting elements) |
+| H1 (visual primacy), H4 (narrative sequencing) | Primary reading path or structural direction remains unresolved | `/visualize-lite explore artifact` to compare arrangements under one brief, within its supported scope |
+| H1 (visual primacy) | No element is amplified — everything reads at middle weight | `/visualize-lite bolder` (amplify one focal element) |
+| H1 | Too many elements competing (3+ at same weight) | `/visualize-lite simplify` (cut the competing chrome) OR `/visualize-lite quieter` (demote the supporting elements) |
 | H3 (scannable structure) | Necessary headings, labels, or navigation are missing | direct edit to add the structure required by the reader's task; do not assume a TOC is necessary |
-| H3 | Chrome is present but visually flat (all h2s same weight) | `/visualize polish` (typography dimension raises hierarchy) |
-| H3 | Static header metadata appears as unlabeled rounded chips | `/visualize polish` (replace chips with crisp key-value labels) |
-| H3 | Header and mobile contents/TOC create adjacent horizontal rules | `/visualize polish` (collapse to one separator at the mobile breakpoint) |
-| H3 | Mobile TOC wraps as unrelated words | `/visualize polish` (turn TOC into a structured list or grid) |
-| H3 | Table caption/intro/body roles are visually confused | `/visualize polish` (typography dimension restores table type hierarchy) |
+| H3 | Chrome is present but visually flat (all h2s same weight) | `/visualize-lite polish` (typography dimension raises hierarchy) |
+| H3 | Static header metadata appears as unlabeled rounded chips | `/visualize-lite polish` (replace chips with crisp key-value labels) |
+| H3 | Header and mobile contents/TOC create adjacent horizontal rules | `/visualize-lite polish` (collapse to one separator at the mobile breakpoint) |
+| H3 | Mobile TOC wraps as unrelated words | `/visualize-lite polish` (turn TOC into a structured list or grid) |
+| H3 | Table caption/intro/body roles are visually confused | `/visualize-lite polish` (typography dimension restores table type hierarchy) |
 | H3 | A readable figure or comparison hides its principal distinction in body prose | directly recompose its objects, labels, grouping, or emphasis within the approved scope; apply shared Design judgment if the direction needs reconsideration |
 | H4 (narrative sequencing) | Sections are in the wrong order and the intended order is established | direct edit to restore that order |
-| H4 | Buildup-to-claim prose ("background → process → finding") | `/visualize simplify` (cuts the buildup, lifts the claim) |
-| H2 (topic register), H7 (brand-trueness) | Visual treatment is generic | `/visualize bolder` when the structure works and expression is weak; otherwise apply shared Design judgment |
-| H6 (register coherence) | One section is louder than the rest | `/visualize quieter` on the loud section |
-| H6 | One section is quieter than the rest | `/visualize bolder` on the quiet section |
+| H4 | Buildup-to-claim prose ("background → process → finding") | `/visualize-lite simplify` (cuts the buildup, lifts the claim) |
+| H2 (topic register), H7 (brand-trueness) | Visual treatment is generic | `/visualize-lite bolder` when the structure works and expression is weak; otherwise apply shared Design judgment |
+| H6 (register coherence) | One section is louder than the rest | `/visualize-lite quieter` on the loud section |
+| H6 | One section is quieter than the rest | `/visualize-lite bolder` on the quiet section |
 | H5 (cite the number), H8 (reader-respect) | Copy-side | direct edit; no verb covers prose-by-prose |
-| H9 (rendered-state realism) | Mobile / dark mode / print broken | `/visualize polish` (walks edge-data + final verification) |
-| H9 | Mobile technically reflows but feels over-designed or less polished than a simple document | `/visualize polish` (mobile micro-details + medium verification) |
+| H9 (rendered-state realism) | Mobile / dark mode / print broken | `/visualize-lite polish` (walks edge-data + final verification) |
+| H9 | Mobile technically reflows but feels over-designed or less polished than a simple document | `/visualize-lite polish` (mobile micro-details + medium verification) |
 | H9 | Empty states missing / long-name overflow / undefined-field render | direct edit (these are content-state gaps, see polish's "medium / state / semantic gap" root-cause bucket) |
 | H10 (honesty) | Any lie-factor violation | direct fix — ship-blocker |
-| Any heuristic FAIL AND ≥3 Absolute bans present | Ban-heavy artifact regardless | `/visualize simplify` first (per SKILL.md refuse-and-route), then re-evaluate |
+| Any heuristic FAIL AND ≥3 Absolute bans present | Ban-heavy artifact regardless | `/visualize-lite simplify` first (per SKILL.md refuse-and-route), then re-evaluate |
 
 ## Output shape inside review.md's report
 
@@ -156,7 +156,7 @@ Render the heuristic verdicts as a section between "Info / aggregate patterns" a
 | H3 | Scannable structure | PASS | headings and comparison labels expose the principal distinctions at desktop and mobile |
 | … | … | … | … |
 
-**Grade: B** (2 WARNs, no FAILs). Worst: H2. Recommended next action: `/visualize bolder` to strengthen the brand's expression within the established structure.
+**Grade: B** (2 WARNs, no FAILs). Worst: H2. Recommended next action: `/visualize-lite bolder` to strengthen the brand's expression within the established structure.
 ```
 
 Every note must be 1 sentence and must name the evidence that triggered the verdict. PASS notes are mandatory; they should cite the screenshot/viewport, detector result, or element that proves the heuristic holds.

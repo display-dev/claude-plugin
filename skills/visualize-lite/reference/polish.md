@@ -2,7 +2,7 @@
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 
-`/visualize polish <path>` is the terminal Refine verb. The other Refine verbs (`simplify` / `bolder` / `quieter` / `animate`) hand off to this one.
+`/visualize-lite polish <path>` is the terminal Refine verb. The other Refine verbs (`simplify` / `bolder` / `quieter` / `animate`) hand off to this one.
 
 Walk every applicable quality dimension and report findings against the reader's task and resolved context. A pass may require few changes or none. Finding count does not establish diligence; rendered evidence and the reasons for each judgment do.
 
@@ -170,7 +170,7 @@ Skipped verification accumulates as "polish reports clean but the artifact is br
 
 If the artifact needs broad rework, polish has misfired. The escape:
 
-- **Artifact carries ≥3 Absolute bans** → refuse and route to `/visualize simplify` first. Simplify's job is removing ban patterns; polish assumes a clean baseline. (SKILL.md's "Refine verbs on artifacts that carry ≥3 Absolute bans" rule applies.)
+- **Artifact carries ≥3 Absolute bans** → refuse and route to `/visualize-lite simplify` first. Simplify's job is removing ban patterns; polish assumes a clean baseline. (SKILL.md's "Refine verbs on artifacts that carry ≥3 Absolute bans" rule applies.)
 - **Artifact needs broad rework beyond polish** → stop refinement and apply SKILL.md's Hand-off output shape and Design judgment to recommend the next action.
 - **Do not hand off to another Refine verb expecting it to come back.** The Refine verbs (`simplify` / `bolder` / `quieter` / `animate`) hand off to polish, but polish doesn't hand off to them — that creates a cycle. When polish refuses, recommend the next action to the user; do not start another command.
 

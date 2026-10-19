@@ -2,7 +2,7 @@
 
 Before following the instructions below, apply the shared rules in SKILL.md.
 
-`/visualize bolder <path>` increases visual impact through stronger hierarchy, more committed scale, decisive type, and brand-true color amplification. Hands off to `polish` at the end.
+`/visualize-lite bolder <path>` increases visual impact through stronger hierarchy, more committed scale, decisive type, and brand-true color amplification. Hands off to `polish` at the end.
 
 Bold means distinctive, not "more effects." Don't reach for gradient text or glassmorphism — they're the most-trained-on visual reflex and read as anonymous. Every Absolute ban in SKILL.md applies during bolder.
 
@@ -21,8 +21,8 @@ Bolder is the right verb when the artifact is safe, generic, medium-everything �
 
 Refuse and route when:
 
-- The artifact carries ≥2 Absolute bans. Bolder on a ban-carrying artifact amplifies bans (a 144px gradient-text headline is BAN 1 worse, not better). Recommend `/visualize simplify` first.
-- Every candidate focal moment is already over-amplified (gradient text + hero metric + tricolon CTA all competing). Recommend `/visualize quieter` first.
+- The artifact carries ≥2 Absolute bans. Bolder on a ban-carrying artifact amplifies bans (a 144px gradient-text headline is BAN 1 worse, not better). Recommend `/visualize-lite simplify` first.
+- Every candidate focal moment is already over-amplified (gradient text + hero metric + tricolon CTA all competing). Recommend `/visualize-lite quieter` first.
 - The artifact is short-form prose (whitepaper / report) — bolder usually means stronger typographic hierarchy here, not theatrics. If you'd reach for spatial / color amplification on prose, you're misapplying the verb.
 
 ## Plan the amplification
@@ -140,4 +140,4 @@ Bolder-specific content to surface:
 - **Diff size** as a percent of the artifact.
 - **Next step.** Polish raises the floor on the dimensions bolder didn't change.
 
-See SKILL.md `Hand-off output shape` for the variant rules. Bolder's refusal case fires on artifacts that already carry ≥2 Absolute bans, on artifacts where no focal moment can be named, or on short-form prose where amplification would misapply — route to `/visualize simplify` or `/visualize quieter` first in those cases.
+See SKILL.md `Hand-off output shape` for the variant rules. Bolder's refusal case fires on artifacts that already carry ≥2 Absolute bans, on artifacts where no focal moment can be named, or on short-form prose where amplification would misapply — route to `/visualize-lite simplify` or `/visualize-lite quieter` first in those cases.

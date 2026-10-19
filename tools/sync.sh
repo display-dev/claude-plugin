@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
-# Copy the pinned display.dev skill into skills/.
+# Copy the pinned display.dev and Visualize skills into skills/.
 #
-# The skill is maintained in github.com/display-dev/skill. This plugin bundles
-# one pinned commit or tag of it (sources.lock). Never edit skills/ by hand.
+# display.dev is maintained in github.com/display-dev/skill and Visualize in
+# github.com/display-dev/visualize. This plugin bundles one pinned commit of
+# each (sources.lock). Never edit skills/ by hand.
+#
+# Visualize is trimmed so the plugin stays small enough for directory
+# validation: its design-system packages (except _template and clean) and its
+# test files are left out, and design-systems/REMOTE.md points at the full
+# catalog at the same commit. Visualize 0.8.1+ fetches a missing package from
+# there.
 #
 # Usage:
 #   tools/sync.sh           # replace skills/ with the pinned sources
@@ -34,6 +41,33 @@ WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 STATUS=0
 
+# Leave out what the plugin does not need at run time and record where the
+# full design-system catalog lives.
+# $1 = copy to trim, $2 = repo URL, $3 = pinned ref, $4 = path in the repo
+trim_visualize() {
+  local dir="$1" repo="$2" ref="$3" path="$4" slug base
+  for slug in "$dir"/design-systems/*/; do
+    case "$(basename "$slug")" in
+      _template|clean) ;;
+      *) rm -rf "$slug" ;;
+    esac
+  done
+  rm -rf "$dir/fixtures" "$dir/scripts/fixtures"
+  rm -f "$dir"/scripts/*.test.mjs "$dir/scripts/image-test-fixtures.mjs" "$dir/scripts/pattern-fixture-smoke.mjs"
+  base="${repo%.git}"
+  base="${base/https:\/\/github.com\//https://raw.githubusercontent.com/}"
+  cat > "$dir/design-systems/REMOTE.md" <<REMOTE
+# Remote design-system catalog
+
+This copy of Visualize bundles \`catalog-index.json\`, \`_template/\`, and \`clean/\`.
+Every other design system listed in \`catalog-index.json\` is at:
+
+$base/$ref/$path/design-systems/
+
+Append \`<slug>/README.md\`, \`<slug>/DESIGN.md\`, or \`<slug>/tokens.css\`.
+REMOTE
+}
+
 # $1 = name in sources.lock and folder under skills/
 sync_one() {
   local name="$1" repo ref path src dest
@@ -48,6 +82,9 @@ sync_one() {
   if [[ ! -f "$src/SKILL.md" ]]; then
     echo "sync: $repo@$ref has no $path/SKILL.md" >&2
     exit 1
+  fi
+  if [[ "$name" == "visualize" ]]; then
+    trim_visualize "$src" "$repo" "$ref" "$path"
   fi
 
   if [[ "$MODE" == "check" ]]; then
@@ -67,4 +104,5 @@ sync_one() {
 }
 
 sync_one display-dev
+sync_one visualize
 exit "$STATUS"

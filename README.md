@@ -47,7 +47,7 @@ bash tests/hooks.sh   # offline hook tests
 
 Raise `version` in `.claude-plugin/plugin.json` with every release, together with the `X-Client-Source` suffix there and in `commands/feedback.md`. CI checks that they match.
 
-`tools/sync.sh` trims Visualize so the plugin stays small enough for directory validation: it leaves out the design-system packages except `_template` and `clean`, and the test files, and writes `skills/visualize/design-systems/REMOTE.md`. Visualize 0.8.1 and later fetch a design system that is not bundled from that address. Pin a Visualize commit on `main`, never a branch commit, so the address keeps working.
+`tools/sync.sh` trims Visualize so the plugin stays small enough for directory validation: it leaves out the design-system packages except `_template` and `clean`, and the test files, writes `skills/visualize/design-systems/REMOTE.md`, and adds one paragraph to this copy's `SKILL.md` telling the agent to fetch a design system that is not bundled from that address. The Visualize repository itself is unchanged. Pin a Visualize release commit, never a branch commit, so the address keeps working.
 
 Display's privacy policy: https://display.dev/privacy
 

@@ -7,9 +7,9 @@
 #
 # Visualize is trimmed so the plugin stays small enough for directory
 # validation: its design-system packages (except _template and clean) and its
-# test files are left out, and design-systems/REMOTE.md points at the full
-# catalog at the same commit. Visualize 0.8.1+ fetches a missing package from
-# there.
+# test files are left out, design-systems/REMOTE.md points at the full catalog
+# at the same commit, and this copy's SKILL.md gets one paragraph telling the
+# agent to fetch a missing package from there. The upstream skill is unchanged.
 #
 # Usage:
 #   tools/sync.sh           # replace skills/ with the pinned sources
@@ -66,6 +66,24 @@ $base/$ref/$path/design-systems/
 
 Append \`<slug>/README.md\`, \`<slug>/DESIGN.md\`, or \`<slug>/tokens.css\`.
 REMOTE
+  add_remote_rule "$dir/SKILL.md"
+}
+
+# Insert the fetch rule after the paragraph that introduces design-systems/.
+# Fails when upstream moves that paragraph, so the rule is never lost silently.
+add_remote_rule() {
+  local skill="$1" anchor rule
+  anchor='The design systems under `design-systems/` are reference packages'
+  rule='This copy of Visualize bundles only `catalog-index.json`, `_template/`, and `clean/` from `design-systems/`. `design-systems/REMOTE.md` holds the base URL of the full catalog at the same version. When a selected package folder is missing, fetch its `README.md`, `DESIGN.md`, and `tokens.css` from that base URL plus `<slug>/<file>` with `curl` or the host'"'"'s web fetch, then use them as if they were local. If a fetch fails, name the package that could not be loaded and continue with the next shortlisted reference or the fallback; never rebuild a package from memory.'
+  if [[ "$(grep -cF "$anchor" "$skill")" != "1" ]]; then
+    echo "sync: $skill must contain exactly one line starting the design-systems paragraph" >&2
+    exit 1
+  fi
+  RULE="$rule" ANCHOR="$anchor" awk '
+    { print }
+    index($0, ENVIRON["ANCHOR"]) == 1 { print ""; print ENVIRON["RULE"] }
+  ' "$skill" > "$skill.tmp"
+  mv "$skill.tmp" "$skill"
 }
 
 # $1 = name in sources.lock and folder under skills/

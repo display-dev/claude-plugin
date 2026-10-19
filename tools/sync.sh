@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# Copy the pinned display.dev skill into skills/.
+# Copy the pinned display.dev and Visualize Lite skills into skills/.
 #
-# The skill is maintained in github.com/display-dev/skill. This plugin bundles
-# one pinned commit or tag of it (sources.lock). Never edit skills/ by hand.
+# display.dev is maintained in github.com/display-dev/skill. Visualize Lite is
+# the trimmed, standalone build in github.com/display-dev/visualize
+# (skills/visualize-lite/, about 130 files), which keeps this plugin small
+# enough for directory validation. This plugin bundles one pinned commit of
+# each (sources.lock). Never edit skills/ by hand.
 #
 # Usage:
 #   tools/sync.sh           # replace skills/ with the pinned sources
@@ -67,4 +70,5 @@ sync_one() {
 }
 
 sync_one display-dev
+sync_one visualize-lite
 exit "$STATUS"

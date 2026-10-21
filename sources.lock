@@ -2,7 +2,7 @@
 # Change a skill in its own repository, release it there, then bump the ref
 # here and run tools/sync.sh.
 display-dev_repo=https://github.com/display-dev/skill.git
-display-dev_ref=10df21fce1fdfc28f87e2095cb08cea24ea95e75
+display-dev_ref=f7edcdaaca439e1b1431a1e90e133238cf31d648
 display-dev_path=display-dev
 visualize_repo=https://github.com/display-dev/visualize.git
 visualize_ref=53eb0dc560688b8174ff1b2811fe63d04042f42d

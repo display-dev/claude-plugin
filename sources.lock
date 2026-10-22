@@ -5,5 +5,5 @@ display-dev_repo=https://github.com/display-dev/skill.git
 display-dev_ref=f7edcdaaca439e1b1431a1e90e133238cf31d648
 display-dev_path=display-dev
 visualize_repo=https://github.com/display-dev/visualize.git
-visualize_ref=53eb0dc560688b8174ff1b2811fe63d04042f42d
+visualize_ref=dee1a40aee45ad06ed65022078bdfff59dba9008
 visualize_path=skills/visualize

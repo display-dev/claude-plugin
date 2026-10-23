@@ -73,5 +73,5 @@ jobs:
       - name: Exact scripts run and neighboring scripts require approval
         shell: pwsh
         run: |
-          $env:CLAUDE_EXECUTABLE = "$env:RUNNER_TEMP/claude-permissions/node_modules/@anthropic-ai/claude-code-win32-x64/bin/claude.exe"
+          $env:CLAUDE_EXECUTABLE = (Resolve-Path "$env:RUNNER_TEMP/claude-permissions/node_modules/@anthropic-ai/claude-code-win32-x64/claude.exe").Path
           node tests/visualize-permissions-native.mjs

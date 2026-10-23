@@ -37,17 +37,18 @@ The hooks run in Claude Code and in Cowork on your own computer. The comment not
 
 ## Maintaining
 
-`skills/display-dev/` is a copy of a pinned commit of [display-dev/skill](https://github.com/display-dev/skill), and `skills/visualize/` of the [canonical Visualize skill](https://github.com/display-dev/visualize/tree/main/skills/visualize). Never edit them here. Change a skill in its own repository, then update `sources.lock` and run:
+`skills/display-dev/` is an exact copy of a pinned commit of [display-dev/skill](https://github.com/display-dev/skill). `skills/visualize/` comes from the [canonical Visualize skill](https://github.com/display-dev/visualize/tree/main/skills/visualize), with two plugin-only entrypoint adaptations applied by `tools/prepare-visualize.mjs`: exact `${CLAUDE_PLUGIN_ROOT}` script preapprovals, and helper-path guidance that uses quoted absolute paths. Never edit bundled skills by hand. Change shared skill behavior upstream; maintain these two adaptations here. To update a pin, edit `sources.lock` and run:
 
 ```sh
 tools/sync.sh           # copy the pinned skills into skills/
 tools/sync.sh --check   # CI: fail when skills/ has drifted
 bash tests/hooks.sh   # offline hook tests
+node --test tests/visualize-permissions.test.mjs
 ```
 
 Raise `version` in `.claude-plugin/plugin.json` with every release, together with the `X-Client-Source` suffix there and in `commands/feedback.md`. CI checks that they match.
 
-Visualize is copied unchanged from its single authored skill directory. It bundles the catalog index and Clean fallback; `scripts/catalog.mjs` retrieves other selected references from the separately pinned catalog revision and caches them locally. The Visualize source pin in `sources.lock` and its catalog revision serve different purposes; neither follows a moving branch at runtime.
+Apart from those two entrypoint adaptations, Visualize is copied unchanged. Its scripts and references retain the pinned bytes. It bundles the catalog index and Clean fallback; `scripts/catalog.mjs` retrieves other selected references from the separately pinned catalog revision and caches them locally. The Visualize source pin in `sources.lock` and its catalog revision serve different purposes; neither follows a moving branch at runtime.
 
 The bundled skill is now named `visualize` (previously `visualize-lite`). In Claude Code, use `/display-dev:visualize` in place of `/display-dev:visualize-lite`.
 

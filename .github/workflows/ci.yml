@@ -18,6 +18,9 @@ jobs:
       - name: Bundled skills match their pinned sources
         run: tools/sync.sh --check
 
+      - name: Visualize permission adaptation
+        run: node --test tests/visualize-permissions.test.mjs
+
       - name: JSON manifests parse
         run: |
           jq empty .claude-plugin/plugin.json
@@ -52,3 +55,23 @@ jobs:
         with:
           scandir: ./hooks
           severity: warning
+
+  visualize-permissions-windows:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+
+      - name: Install pinned native Claude for this runner
+        shell: pwsh
+        run: |
+          npm install --prefix "$env:RUNNER_TEMP/claude-permissions" --ignore-scripts --no-audit --no-fund @anthropic-ai/claude-code-win32-x64@2.1.306
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Exact scripts run and neighboring scripts require approval
+        shell: pwsh
+        run: |
+          $env:CLAUDE_EXECUTABLE = (Resolve-Path "$env:RUNNER_TEMP/claude-permissions/node_modules/@anthropic-ai/claude-code-win32-x64/claude.exe").Path
+          node tests/visualize-permissions-native.mjs

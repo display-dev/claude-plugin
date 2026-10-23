@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Copy the pinned display.dev and Visualize skills into skills/.
 # Both are maintained in their source repositories; this plugin bundles
-# the exact directories pinned in sources.lock. Never edit skills/ by hand.
+# the pinned directories plus the Visualize permission adaptation below.
+# Never edit skills/ by hand.
 #
 # Usage:
 #   tools/sync.sh           # replace skills/ with the pinned sources
@@ -47,6 +48,10 @@ sync_one() {
   if [[ ! -f "$src/SKILL.md" ]]; then
     echo "sync: $repo@$ref has no $path/SKILL.md" >&2
     exit 1
+  fi
+
+  if [[ "$name" == "visualize" ]]; then
+    node "$ROOT/tools/prepare-visualize.mjs" "$src"
   fi
 
   if [[ "$MODE" == "check" ]]; then

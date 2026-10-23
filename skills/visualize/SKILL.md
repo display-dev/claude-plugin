@@ -5,28 +5,17 @@ license: MIT
 user-invocable: true
 argument-hint: "[teach | explore | simplify | bolder | quieter | animate | polish | review | publish] [<topic-or-path>]"
 allowed-tools:
-  - Bash(node $SKILL_DIR/scripts/detect.mjs*)
-  - Bash(node $SKILL_DIR/scripts/browser-contrast.mjs*)
-  - Bash(node $SKILL_DIR/scripts/browser-diagram.mjs*)
-  - Bash(node $SKILL_DIR/scripts/render-mermaid.mjs*)
-  - Bash(node $SKILL_DIR/scripts/palette.mjs*)
-  - Bash(node $SKILL_DIR/scripts/teach.mjs*)
-  - Bash(node $SKILL_DIR/scripts/catalog.mjs*)
-  - Bash(node $SKILL_DIR/scripts/generate-image.mjs*)
-  - Bash(node $SKILL_DIR/scripts/record-image.mjs*)
-  - Bash(bash $SKILL_DIR/scripts/publish.sh*)
-  - Bash($SKILL_DIR/scripts/publish.sh*)
-  - Bash(node */visualize/scripts/detect.mjs*)
-  - Bash(node */visualize/scripts/browser-contrast.mjs*)
-  - Bash(node */visualize/scripts/browser-diagram.mjs*)
-  - Bash(node */visualize/scripts/render-mermaid.mjs*)
-  - Bash(node */visualize/scripts/palette.mjs*)
-  - Bash(node */visualize/scripts/teach.mjs*)
-  - Bash(node */visualize/scripts/catalog.mjs*)
-  - Bash(node */visualize/scripts/generate-image.mjs*)
-  - Bash(node */visualize/scripts/record-image.mjs*)
-  - Bash(bash */visualize/scripts/publish.sh*)
-  - Bash(*/visualize/scripts/publish.sh*)
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/detect.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/browser-contrast.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/browser-diagram.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/render-mermaid.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/palette.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/teach.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/catalog.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/generate-image.mjs":*)'
+  - 'Bash(node "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/record-image.mjs":*)'
+  - 'Bash(bash "${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/publish.sh":*)'
+  - 'Bash("${CLAUDE_PLUGIN_ROOT}/skills/visualize/scripts/publish.sh":*)'
 description: >
   Create, explore, refine, and review on-brand HTML reports, diagrams,
   diff reviews, slide decks, plans, recaps, and dashboards. Use to visualize
@@ -40,7 +29,7 @@ description: >
 
 Generate self-contained HTML artifacts composed from `templates/*/template.md` contracts against the resolved visual context. The project's `DESIGN.md`, `PRODUCT.md`, and sidecar `tokens.css` provide the default; artifact themes below allow reference systems within the user's approved scope. Shared pattern recipes live in `patterns/` and are read only when the selected template and user ask make them relevant; shell mechanics are loaded automatically only when a template declares `shell: <slug>`.
 
-In helper commands, `$SKILL_DIR` means the absolute directory containing this installed `SKILL.md`. Resolve it from the host's skill location; set it in the shell and quote it (`"$SKILL_DIR"`), or substitute the quoted absolute path. Hosts do not necessarily export it.
+In helper commands, `$SKILL_DIR` means the absolute directory containing this installed `SKILL.md`. Resolve it from the host's skill location and substitute the quoted absolute path, including quotes around each script path. Do not leave `$SKILL_DIR` as a shell variable: the plugin's narrow preapprovals match resolved script paths.
 
 ## Design judgment
 

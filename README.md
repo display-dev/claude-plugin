@@ -6,7 +6,7 @@ Publish HTML or Markdown from Claude to [display.dev](https://display.dev), choo
 - **Visualize**: create, explore, refine, and review on-brand HTML reports, plans, diagrams, decks, and dashboards; reference design systems load when selected;
 - the **display.dev MCP server** (`https://api.display.dev/v1/mcp`);
 - **`/display-dev:feedback`**: lists your artifacts with open comments, shows a plan for each thread, and after you approve it, edits the artifact, replies, and resolves the threads. With no comments, it offers to ask a reviewer or to wait for comments;
-- a **publish guard** hook that scans a publish for secrets (API keys, tokens, private keys). It blocks a public publish and asks before any other publish;
+- a **publish guard** hook that scans supported legacy publish inputs for secrets (API keys, tokens, private keys). It blocks a public legacy publish and asks before other supported legacy publishes;
 - a **comment note** hook that tells you at session start which of your artifacts have new comments. It reads only open-thread counts, never comment text.
 
 ## Install
@@ -57,3 +57,7 @@ Display's privacy policy: https://display.dev/privacy
 ## License
 
 MIT
+
+## Native file coverage
+
+The publish guard covers supported legacy `dsp publish`, `publish.sh`, and inline MCP `publish` inputs. It does not scan every native file create/update, staged upload, or sharing action. Review the exact source and recipients before transfer. Native feedback needs a matched bundled skill and delivered native discussion tools; do not use numbered artifact commands for native IDs.
